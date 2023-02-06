@@ -69,7 +69,7 @@ function App() {
         )}
       </TodoList>
 
-      {!!openModal && (
+      {!!openModal && ( // la doble negacion valida si viene un dato distinto de 0 | undefined | null 
         <Modal>
           <TodoForm
             addTodo={addTodo}
