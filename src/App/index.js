@@ -29,7 +29,7 @@ function App() {
     addTodo,
     sincronizeTodos,
   } = useTodos();
-  
+
   return (
     <React.Fragment>
       <TodoHeader loading={loading}>
@@ -44,19 +44,21 @@ function App() {
       </TodoHeader>
 
       <TodoList
-        error={error}
-        loading={loading}
-        totalTodos={totalTodos}
-        searchedTodos={searchedTodos}
-        searchText={searchValue}
-        onError={() => <TodosError />}
-        onLoading={() => <TodosLoading />}
-        onEmptyTodos={() => <EmptyTodos />}
-        onEmptySearchResults={
+        error={error} // render prop -> accende desde TodoList como props.error
+        loading={loading} // render prop -> accende desde TodoList como props.loading
+        totalTodos={totalTodos} // render prop -> accende desde TodoList como props.totalTodos
+        searchedTodos={searchedTodos} // render prop -> accende desde TodoList como props.searchedTodos
+        searchText={searchValue} // render prop -> accende desde TodoList como props.searchText
+        onError={() => <TodosError />} // render prop -> accende desde TodoList como props.onError()
+        onLoading={() => <TodosLoading />} // render prop -> accende desde TodoList como props.onLoading()
+        onEmptyTodos={() => <EmptyTodos />} // render prop -> accende desde TodoList como props.onEmptyTodos()
+        onEmptySearchResults={ // render prop -> accende desde TodoList como props.onEmptySearchResults(props.searchText)
           (searchText) => <p>No hay resultados para {searchText}</p>
         }
       >
         {todo => (
+          // render function -> en el componente TodoList se debe llamar
+          // como props.children si queremos renderizar una render function
           <TodoItem
             key={todo.text}
             text={todo.text}
